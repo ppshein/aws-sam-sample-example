@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # sample
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
@@ -117,3 +118,7 @@ aws cloudformation delete-stack --stack-name sample
 See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for an introduction to SAM specification, the SAM CLI, and serverless application concepts.
 
 Next, you can use AWS Serverless Application Repository to deploy ready to use Apps that go beyond hello world samples and learn how authors developed their applications: [AWS Serverless Application Repository main page](https://aws.amazon.com/serverless/serverlessrepo/)
+=======
+# aws-sam-sample-example
+It's sam template of to combine S3, Lambda, DynamoDB and API Gateway
+>>>>>>> 8a59f651c0bddff63df718bba0c00197cd73581b
