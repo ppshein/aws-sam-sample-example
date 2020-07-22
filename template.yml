@@ -4,6 +4,11 @@ Description: >
   Example SAM template to make trigger between two S3 buckets,
   DynamoDB, Lambda and API Gateway
 
+Parameters:
+
+  S3BucketPrefix:
+    Type: String
+
 Resources:
   LambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -43,7 +48,7 @@ Resources:
   SourceBucket:
     DependsOn: TriggerLambda
     Properties:
-      BucketName: ppshein-source-bucket
+      BucketName: !Sub "${S3BucketPrefix}-source-bucket"
       ReplicationConfiguration:
         Role: !GetAtt S3Role.Arn
         Rules:
@@ -54,7 +59,7 @@ Resources:
                   - ""
                   -
                     - "arn:aws:s3:::"
-                    - "ppshein-replication-bucket"
+                    - !Sub "${S3BucketPrefix}-replication-bucket"
               StorageClass: STANDARD
             Id: MyRule1
             Prefix: ""
@@ -113,7 +118,7 @@ Resources:
     Type: Custom::LambdaTrig
     Properties:
       ServiceToken: !GetAtt ReplicationBucket.Arn
-      DestBucketName: ppshein-replication-bucket
+      DestBucketName: !Sub "${S3BucketPrefix}-replication-bucket"
       DestBucketRegion: !Ref "AWS::Region"
 
   S3Role:
