@@ -114,7 +114,7 @@ Resources:
     Properties:
       ServiceToken: !GetAtt ReplicationBucket.Arn
       DestBucketName: ppshein-replication-bucket
-      DestBucketRegion: ap-southeast-1
+      DestBucketRegion: !Ref "AWS::Region"
 
   S3Role:
     Properties:
@@ -225,3 +225,8 @@ Resources:
           Properties:
             Path: /
             Method: get
+
+Outputs:
+  SamApiURI:
+    Description: "API Gateway endpoint URL for Prod stage for SAM Python function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
